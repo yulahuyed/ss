@@ -61,7 +61,7 @@ if [ "${NS_OFF}" != "true" ]
 then
     echo "net-speeder ${PARAM_NS_DEVICE} [enabled]"
     echo "----- ----- ----- ----- -----"
-    /usr/local/bin/net_speeder ${PARAM_NS_DEVICE} "ip" &
+    nohup /usr/local/bin/net_speeder ${PARAM_NS_DEVICE} "ip" >/dev/null 2>&1 &
     ip a
     ping yahoo.com -c 5
     echo "----- ----- ----- ----- -----"
