@@ -1,7 +1,7 @@
 # shadowsocks-net-speeder
 
 FROM ubuntu:14.04.3
-MAINTAINER lowid <lowid@outlook.com>
+MAINTAINER yhiblog <shui.azurewebsites.net>
 RUN apt-get update && \
     apt-get install -y python-pip libnet1 libnet1-dev libpcap0.8 libpcap0.8-dev git
 
@@ -16,5 +16,6 @@ COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/net_speeder
 
+EXPOSE 80
 # Configure container to run as an executable
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
