@@ -6,7 +6,7 @@ if [ "${SS_PORT}" ]
 then
     PARAM_SS_PORT=${SS_PORT}
 else
-    PARAM_SS_PORT=8989
+    PARAM_SS_PORT=36000
 fi
 PARAM_SS_PASSWORD=""
 if [ "${SS_PASSWORD}" ]
@@ -20,7 +20,7 @@ if [ "${SS_METHOD}" ]
 then
     PARAM_SS_METHOD="${SS_METHOD}"
 else
-    PARAM_SS_METHOD="aes-256-cfb"
+    PARAM_SS_METHOD="aes-256-gcm"
 fi
 PARAM_NS_DEVICE=""
 if [ "${NS_DEVICE}" ]
