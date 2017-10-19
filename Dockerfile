@@ -2,6 +2,12 @@
 
 FROM ubuntu:14.04.3
 MAINTAINER yhiblog <shui.azurewebsites.net>
+
+ARG SS_PORT=36000
+ENV SS_PORT $SS_PORT
+
+EXPOSE $SS_PORT
+
 RUN apt-get update && \
     apt-get install -y python-pip libnet1 libnet1-dev libpcap0.8 libpcap0.8-dev git
 
