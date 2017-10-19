@@ -3,7 +3,7 @@
 FROM ubuntu:14.04.3
 MAINTAINER yhiblog <shui.azurewebsites.net>
 
-EXPOSE 80-30000
+EXPOSE 80 443 36000 8080 8989 8888 10000 5000
 
 RUN apt-get update && \
     apt-get install -y python-pip libnet1 libnet1-dev libpcap0.8 libpcap0.8-dev git
