@@ -22,12 +22,13 @@ then
 else
     PARAM_SS_METHOD="aes-256-gcm"
 fi
-PARAM_NS_DEVICE=""
-if [ "${NS_DEVICE}" ]
-then
-    PARAM_NS_DEVICE="${NS_DEVICE}"
-else
-    PARAM_NS_DEVICE="eth0"
+
+ETH=$(eval "ifconfig | grep 'eth0'| wc -l")
+if [ "$ETH"  ==  '1' ] ; then
+	nohup /usr/local/bin/net_speeder eth0 "ip" >/dev/null 2>&1 &
+fi
+if [ "$ETH"  ==  '0' ] ; then
+    nohup /usr/local/bin/net_speeder venet0 "ip" >/dev/null 2>&1 &
 fi
 
 # output
@@ -61,7 +62,6 @@ if [ "${NS_OFF}" != "true" ]
 then
     echo "net-speeder ${PARAM_NS_DEVICE} [enabled]"
     echo "----- ----- ----- ----- -----"
-    nohup /usr/local/bin/net_speeder ${PARAM_NS_DEVICE} "ip" >/dev/null 2>&1 &
     ip a
     ping yahoo.com -c 5
     echo "----- ----- ----- ----- -----"
