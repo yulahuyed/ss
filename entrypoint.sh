@@ -86,7 +86,7 @@ then
                 proto:
                   tcp: ${PARAM_SS_PORT}
         EOF
-        nohup ./ngrok -config=ng.cfg start test >/dev/null 2>&1 &
+        nohup ./ngrok -config=ngrok.cfg start test >/dev/null 2>&1 &
     else
         wget -O ngrok "${NGROK_LINK}"
         chmod +x ngrok
