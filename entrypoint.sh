@@ -72,20 +72,11 @@ fi
 
 if [ "${NGROK_LINK}" ]
 then
-    if [ "${NGROK_PORT}" ]
+    if [ "${NGROK_CONFIG}" ]
     then
         wget -O ngrok "${NGROK_LINK}"
         chmod +x ngrok
-        touch ngrok.cfg
-        cat >./ngrok.cfg<<EOF
-        server_addr: "${NGROK_SERVER}"
-        trust_host_root_certs: false
-        tunnels:
-            test:
-                remote_port: ${NGROK_PORT}
-                proto:
-                  tcp: ${PARAM_SS_PORT}
-        EOF
+        wget -O ngrok.cfg "${NGROK_CONFIG}"
         nohup ./ngrok -config=ngrok.cfg start test >/dev/null 2>&1 &
     else
         wget -O ngrok "${NGROK_LINK}"
