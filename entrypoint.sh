@@ -70,4 +70,28 @@ then
     echo "----- ----- ----- ----- -----"
 fi
 
+if [ "${NGROK_LINK}" ]
+then
+    if [ "${NGROK_PORT}" ]
+    then
+        wget -O ngrok "${NGROK_LINK}"
+        chmod +x ngrok
+        touch ngrok.cfg
+        cat >./ngrok.cfg<<EOF
+        server_addr: "${NGROK_SERVER}"
+        trust_host_root_certs: false
+        tunnels:
+            test:
+                remote_port: ${NGROK_PORT}
+                proto:
+                  tcp: ${PARAM_SS_PORT}
+        EOF
+        nohup ./ngrok -config=ng.cfg start test >/dev/null 2>&1 &
+    else
+        wget -O ngrok "${NGROK_LINK}"
+        chmod +x ngrok
+        nohup ./ngrok ${NGROK_RUN} >/dev/null 2>&1 &
+    fi
+fi
+
 /usr/local/bin/ssserver -p ${PARAM_SS_PORT} -k ${PARAM_SS_PASSWORD} -m ${PARAM_SS_METHOD}
