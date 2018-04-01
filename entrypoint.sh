@@ -4,6 +4,10 @@
 PARAM_SS_PORT=""
 if [ "${SS_PORT}" ]
 then
+    if [[ ${SS_PORT} =~ .*[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}:[0-9]*$ ]] 
+    then
+    SS_PORT=`echo ${SS_PORT} | awk -F: '{print $NF}'`
+    fi
     PARAM_SS_PORT=${SS_PORT}
 else
     PARAM_SS_PORT=36000
